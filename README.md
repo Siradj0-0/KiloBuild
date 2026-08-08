@@ -1,6 +1,6 @@
 # KiloBuild
 
-A production-grade, self-hosted platform for deploying, managing, monitoring, and maintaining unlimited Node.js applications and Discord bots inside isolated Docker containers. Think PM2 + Coolify + Docker Compose — focused on Node.js, built to scale from 1 project to 1,000+.
+A production-grade, self hosted platform for deploying, managing, monitoring, and maintaining unlimited Node.js applications and Discord bots inside isolated Docker containers. Think PM2 + Coolify + Docker Compose — focused on Node.js, built to scale from 1 project to 1,000+.
 
 You own the VPS. You own the containers. You own the data. KiloBuild just runs on top of what's already yours.
 
