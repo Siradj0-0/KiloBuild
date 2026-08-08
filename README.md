@@ -5,13 +5,13 @@ A production-grade, self-hosted platform for deploying, managing, monitoring, an
 You own the VPS. You own the containers. You own the data. KiloBuild just runs on top of what's already yours.
 
 - **Discord:** https://discord.gg/A5x7E7j8mm — support, feature requests, and announcements
-- **License:** MIT (see [Rights & license](#rights--license) below)
+- **License:** Elastic License 2.0 — free to self-host and use commercially, not for reselling as a hosted service (see [Rights & license](#rights--license) below)
 
 ---
 
 ## Table of contents
 
-- [Why open source](#why-open-source)
+- [Why open source (well — source-available)](#why-open-source-well--source-available)
 - [Rights & license](#rights--license)
 - [Your rights as a user](#your-rights-as-a-user)
 - [Features](#features)
@@ -25,9 +25,9 @@ You own the VPS. You own the containers. You own the data. KiloBuild just runs o
 
 ---
 
-## Why open source
+## Why open source (well — source-available)
 
-KiloBuild manages other people's Docker containers, secrets, and databases — that's a lot of trust to ask for from a closed binary. Being open source isn't a marketing decision here, it's the actual trust mechanism:
+KiloBuild manages other people's Docker containers, secrets, and databases — that's a lot of trust to ask for from a closed binary. Publishing the source isn't a marketing decision here, it's the actual trust mechanism. One honest caveat up front: KiloBuild's license (ELv2) restricts reselling it as a hosted service, so it's technically "source-available" rather than OSI-approved "open source" — but every line of code is public and auditable either way, which is what actually matters for trust:
 
 - **You can read every line that touches your server.** Nothing runs that isn't in this repository.
 - **You can audit the Dockerfile, docker-compose.yml, and startup.sh** that KiloBuild generates for your projects before you ever run them — see [`lib/kilobuild-templates`](lib/kilobuild-templates).
@@ -37,26 +37,29 @@ KiloBuild manages other people's Docker containers, secrets, and databases — t
 
 ## Rights & license
 
-KiloBuild is released under the **MIT License** (see [`LICENSE`](LICENSE)).
+KiloBuild is released under the **Elastic License 2.0 (ELv2)** — see [`LICENSE`](LICENSE) for the full, unmodified text.
 
-Copyright (c) 2026 the KiloBuild project (Siradj0-0).
+Copyright (c) 2026 Siradj0-0 (the KiloBuild project).
 
-In plain language, the MIT license means:
+ELv2 is a "source-available" license (not OSI-approved "open source" in the strict sense, but the code is 100% public and readable — same trust signal, different label). In plain language:
 
-- **I retain copyright** on the original work as its author, and get credit for it. The copyright notice and license text must stay attached to the code, including in forks and redistributions.
-- **I make no warranty and take no liability.** KiloBuild is provided "as is" — you run it on your own infrastructure and are responsible for how you configure and use it.
-- **The project's name, direction, and official Discord server are mine to run.** Anyone is free to fork the code, but "KiloBuild" the project and its community spaces are maintained by me and the people I choose to trust with them.
+- **Use it for anything, including commercially.** Run it on your own VPS, use it to operate your own paid Discord bots, set it up for a client as a contractor — all explicitly fine, with zero royalty owed to me.
+- **You cannot resell KiloBuild itself as a hosted/managed service.** You may not take this software and offer it to third parties as "KiloBuild hosting" or an equivalent managed product that gives your users access to a substantial part of its functionality. If you want to build and sell a hosting product on top of KiloBuild, reach out first.
+- **Credit stays on.** You may not remove, alter, or obscure the copyright and license notices, whatever you do with the code — that's a license term, not a suggestion.
+- **You can still fork, modify, and self-host modified versions freely** — the restriction is on offering the software *as a service to others*, not on using or changing it yourself.
 
 ## Your rights as a user
 
-Under MIT, you are free to:
+Under ELv2, you are free to:
 
-- **Use** KiloBuild for anything — personal projects, client work, a commercial SaaS built on top of it, internal company tooling. No restriction on use case.
+- **Use** KiloBuild for anything — personal projects, client work, running your own commercial Discord bots or SaaS on top of it, internal company tooling. Commercial use is explicitly fine.
 - **Read** every file. There is no hidden or obfuscated code, no separate "enterprise" fork with withheld features.
 - **Modify** it. Change templates, add commands, rip out features you don't want.
-- **Redistribute** it, modified or not, including commercially, as long as the original copyright notice and MIT license text are included.
-- **Fork it** and run a completely independent version under a different name, with no obligation to contribute changes back (though contributions are always welcome).
+- **Redistribute** it, modified or not, as long as the copyright and license notices stay intact and you're not offering it to others as a hosted/managed service.
+- **Fork it** for your own use, with no obligation to contribute changes back (though contributions are always welcome).
 - **Leave at any time.** Nothing about KiloBuild locks your projects in — every project it manages is a normal Docker container with a normal `Dockerfile` and `docker-compose.yml` sitting in a normal folder. If you stop using KiloBuild tomorrow, `docker compose up` still works on every project it built for you.
+
+The one thing you can't do is take this codebase and turn around and sell it — or a hosted version of it — as your own product without my permission. Everything else about how you use it day-to-day is unrestricted.
 
 What KiloBuild does **not** do, and never will, without a very clear opt-in:
 
