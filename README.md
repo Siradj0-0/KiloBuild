@@ -1,6 +1,6 @@
 # KiloBuild
 
-A production-grade, self hosted platform for deploying, managing, monitoring, and maintaining unlimited Node.js applications and Discord bots inside isolated Docker containers. Think PM2 + Coolify + Docker Compose — focused on Node.js, built to scale from 1 project to 1,000+.
+A production-grade, self-hosted platform for deploying, managing, monitoring, and maintaining unlimited Node.js applications and Discord bots inside isolated Docker containers. Think PM2 + Coolify + Docker Compose — focused on Node.js, built to scale from 1 project to 1,000+.
 
 You own the VPS. You own the containers. You own the data. KiloBuild just runs on top of what's already yours.
 
@@ -30,7 +30,7 @@ You own the VPS. You own the containers. You own the data. KiloBuild just runs o
 KiloBuild manages other people's Docker containers, secrets, and databases — that's a lot of trust to ask for from a closed binary. Publishing the source isn't a marketing decision here, it's the actual trust mechanism. One honest caveat up front: KiloBuild's license (ELv2) restricts reselling it as a hosted service, so it's technically "source-available" rather than OSI-approved "open source" — but every line of code is public and auditable either way, which is what actually matters for trust:
 
 - **You can read every line that touches your server.** Nothing runs that isn't in this repository.
-- **You can audit the Dockerfile, docker-compose.yml, and startup.sh** that KiloBuild generates for your projects before you ever run them — see [`lib/kilobuild-templates`](lib/kilobuild-templates).
+- **You can audit the Dockerfile, docker-compose.yml, and startup.sh** that KiloBuild generates for your projects before you ever run them — the generator lives in `lib/kilobuild-templates` inside any release archive under [`Releases/`](Releases).
 - **No telemetry, no phone-home, no analytics.** KiloBuild only talks to Docker's local socket, your database, and (if you enable it) GitHub, to check for releases you point it at.
 - **Secrets stay local.** `apiSecret`, `KILOBUILD_INTERNAL_TOKEN`, and per-project env vars are stored in `.kilobuild/config.json` and `.env` files on your own disk — never transmitted anywhere by KiloBuild itself. See [`KILOBUILD_SETUP.md`](KILOBUILD_SETUP.md) for the full breakdown of what each secret does.
 - **Forkable by design.** If this project ever stops being maintained, or you disagree with a direction it takes, you can fork it and keep running your own version with zero migration cost — it's just files on your VPS.
@@ -106,11 +106,16 @@ Every subsystem (Docker integration, monitoring, logging, recovery, backups, plu
 
 Requirements: a Linux VPS with Docker installed, Node.js, and `pnpm`.
 
+Grab the latest release from [`Releases/`](Releases) — release archives follow `KiloBuild(x.y.z).zip`, so the highest version number is current.
+
 ```bash
-git clone https://github.com/Siradj0-0/KiloBuild.git /opt/kilobuild
+curl -L -o KiloBuild.zip "https://github.com/Siradj0-0/KiloBuild/raw/main/Releases/KiloBuild(1.24.5).zip"
+unzip "KiloBuild.zip" -d /opt/kilobuild
 cd /opt/kilobuild
 bash scripts/install-vps.sh
 ```
+
+(Swap `1.24.5` for whatever's newest in [`Releases/`](Releases) at the time you're installing.)
 
 The installer installs dependencies, builds the libraries/CLI/API, installs `kilo` into `/usr/local/bin`, and runs the daemon under a persistent `kilobuild.service` system service. See [`KILOBUILD_SETUP.md`](KILOBUILD_SETUP.md) for the full setup guide, including what each of the three secrets (`apiSecret`, `KILOBUILD_INTERNAL_TOKEN`, and the per-project rotating status token) does and how to rotate them.
 
